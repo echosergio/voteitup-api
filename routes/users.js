@@ -4,9 +4,16 @@ var db = require('../models');
 var router = express.Router();
 
 router.get('/', (req, res) => {
-    db.User.findAll()
-        .then(polls => {
-            res.send(polls);
+    db.User.findAll({
+            attributes: {
+                exclude: ['createdAt', 'updatedAt'],
+                include: [
+                    [db.sequelize.fn('strftime', '%d-%m-%Y', db.sequelize.col('createdAt')), 'registerDate']
+                ]
+            }
+        })
+        .then(users => {
+            res.send(users);
         })
 });
 
@@ -32,44 +39,45 @@ router.post('/', (req, res) => {
 });
 
 router.get('/:userId', (req, res) => {
-    console.log(req.user)
     db.User.findOne({
+            attributes: {
+                exclude: ['createdAt', 'updatedAt'],
+                include: [
+                    [db.sequelize.fn('strftime', '%d-%m-%Y', db.sequelize.col('createdAt')), 'registerDate']
+                ]
+            },
             where: {
                 id: req.params.userId
             }
         })
-        .then(poll => {
-            res.send(poll);
+        .then(user => {
+            res.send(user);
         })
 });
 
-const pollsQuery = {
-    attributes: {
-        exclude: ['createdAt', 'updatedAt'],
-        include: [
-            [db.sequelize.fn('strftime', '%d-%m-%Y', db.sequelize.col('Poll.createdAt')), 'creationDate']
-        ]
-    },
-    include: [{
-        model: db.Choice,
-        attributes: [
-            'id',
-            'text', [db.sequelize.fn('COUNT', db.Sequelize.col('Choices->Votes.id')), 'votes']
-        ],
-        include: [{
-            model: db.Vote,
-            attributes: []
-        }]
-    }, {
-        model: db.Area,
-        attributes: ['city', 'country']
-    }],
-    group: ['Choices.id']
-}
-
 router.get('/:userId/polls', (req, res) => {
     db.Poll.findAll({
-            pollsQuery,
+            attributes: {
+                exclude: ['createdAt', 'updatedAt'],
+                include: [
+                    [db.sequelize.fn('strftime', '%d-%m-%Y', db.sequelize.col('Poll.createdAt')), 'creationDate']
+                ]
+            },
+            include: [{
+                model: db.Choice,
+                attributes: [
+                    'id',
+                    'text', [db.sequelize.fn('COUNT', db.Sequelize.col('Choices->Votes.id')), 'votes']
+                ],
+                include: [{
+                    model: db.Vote,
+                    attributes: []
+                }]
+            }, {
+                model: db.Area,
+                attributes: ['city', 'country']
+            }],
+            group: ['Choices.id'],
             where: {
                 UserId: req.params.userId
             }

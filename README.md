@@ -34,7 +34,8 @@ Response
         "bio": "Aficionado a la política",
         "email": "carles@mail.com",
         "image": null,
-        "bgImage": null
+        "bgImage": null,
+        "registerDate": "11-11-2017"
     },
     {
         "id": 2,
@@ -42,7 +43,8 @@ Response
         "bio": null,
         "email": "alfonso@mail.com",
         "image": null,
-        "bgImage": null
+        "bgImage": null,
+        "registerDate": "11-11-2017"
     }
 ]
 ```
@@ -78,6 +80,7 @@ Response
         "id": 1,
         "text": "#Referendum de independecia #Cataluña",
         "UserId": 1,
+        "creationDate": "11-11-2017",
         "Choices": [
             {
                 "text": "Sí",
@@ -97,6 +100,7 @@ Response
         "id": 2,
         "text": "#HuelgaDocentes",
         "UserId": 2,
+        "creationDate": "11-11-2017",
         "Choices": [
             {
                 "text": "Sí",
@@ -146,6 +150,7 @@ Response
         "id": 1,
         "text": "#Referendum de independecia #Cataluña",
         "UserId": 1,
+        "creationDate": "11-11-2017",
         "Choices": [
             {
                 "text": "Sí",
