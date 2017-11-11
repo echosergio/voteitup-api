@@ -184,3 +184,20 @@ Response
 }
 ```
 
+GET `/api/v1/users/:userId/activity`  
+
+Response
+```json
+[
+    {
+        "id": 1,
+        "text": "#Referendum de independecia #Cataluña",
+        "choice": "No"
+    },
+    {
+        "id": 2,
+        "text": "#HuelgaDocentes",
+        "choice": "Sí"
+    }
+]
+```

@@ -33,20 +33,29 @@ router.post('/', (req, res) => {
 
 router.get('/:userId', (req, res) => {
     console.log(req.user)
-    db.User.findAll({
+    db.User.findOne({
             where: {
                 id: req.params.userId
             }
         })
-        .then(polls => {
-            res.send(polls);
+        .then(poll => {
+            res.send(poll);
         })
 });
 
 const pollsQuery = {
+    attributes: {
+        exclude: ['createdAt', 'updatedAt'],
+        include: [
+            [db.sequelize.fn('strftime', '%d-%m-%Y', db.sequelize.col('Poll.createdAt')), 'creationDate']
+        ]
+    },
     include: [{
         model: db.Choice,
-        attributes: ['id', 'text', [db.sequelize.fn('COUNT', db.Sequelize.col('Choices->Votes.id')), 'votes']],
+        attributes: [
+            'id',
+            'text', [db.sequelize.fn('COUNT', db.Sequelize.col('Choices->Votes.id')), 'votes']
+        ],
         include: [{
             model: db.Vote,
             attributes: []
@@ -96,12 +105,33 @@ router.post('/:userId/polls', (req, res) => {
 });
 
 router.get('/:userId/polls/:pollId', (req, res) => {
-    db.Poll.findAll({
+    db.Poll.findOne({
             pollsQuery,
             where: {
                 UserId: req.params.userId,
                 id: req.params.pollId
             }
+        })
+        .then(poll => {
+            res.send(poll);
+        })
+});
+
+router.get('/:userId/activity', (req, res) => {
+    db.Poll.findAll({
+            attributes: ['id', 'text', [db.sequelize.col('Choices.text'), 'choice']],
+            include: [{
+                model: db.Choice,
+                attributes: [],
+                include: [{
+                    model: db.Vote,
+                    attributes: [],
+                    where: {
+                        UserId: req.params.userId
+                    }
+                }],
+                required: true
+            }]
         })
         .then(polls => {
             res.send(polls);
