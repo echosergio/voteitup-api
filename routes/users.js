@@ -46,7 +46,7 @@ router.get('/:userId', (req, res) => {
 const pollsQuery = {
     include: [{
         model: db.Choice,
-        attributes: ['text', [db.sequelize.fn('COUNT', db.Sequelize.col('Choices->Votes.id')), 'votes']],
+        attributes: ['id', 'text', [db.sequelize.fn('COUNT', db.Sequelize.col('Choices->Votes.id')), 'votes']],
         include: [{
             model: db.Vote,
             attributes: []
@@ -59,23 +59,12 @@ const pollsQuery = {
 }
 
 router.get('/:userId/polls', (req, res) => {
-    pollsQuery.where = {
-        UserId: req.params.userId
-    }
-
-    db.Poll.findAll(pollsQuery)
-        .then(polls => {
-            res.send(polls);
+    db.Poll.findAll({
+            pollsQuery,
+            where: {
+                UserId: req.params.userId
+            }
         })
-});
-
-router.get('/:userId/polls/:pollId', (req, res) => {
-    pollsQuery.where = {
-        UserId: req.params.userId,
-        id: req.params.pollId
-    }
-
-    db.Poll.findAll(pollsQuery)
         .then(polls => {
             res.send(polls);
         })
@@ -104,6 +93,19 @@ router.post('/:userId/polls', (req, res) => {
     }).catch(err =>
         next(err)
     )
+});
+
+router.get('/:userId/polls/:pollId', (req, res) => {
+    db.Poll.findAll({
+            pollsQuery,
+            where: {
+                UserId: req.params.userId,
+                id: req.params.pollId
+            }
+        })
+        .then(polls => {
+            res.send(polls);
+        })
 });
 
 module.exports = router;

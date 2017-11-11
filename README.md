@@ -68,6 +68,7 @@ Response
 ## Polls
 
 GET `/api/v1/polls`  
+GET `/api/v1/polls/:pollId`  
 GET `/api/v1/polls/:userId` 
 
 Response
@@ -110,6 +111,27 @@ Response
             "city": "Madrid",
             "country": "España"
         }
+    }
+]
+```
+ 
+GET `/api/v1/:pollId/activity`  
+GET `/api/v1/:pollId/activity?daysback=3` 
+
+Response
+```json
+[
+    {
+        "votes": 11,
+        "date": "01-11-2017"
+    },
+    {
+        "votes": 17,
+        "date": "02-11-2017"
+    },
+    {
+        "votes": 9,
+        "date": "03-11-2017"
     }
 ]
 ```

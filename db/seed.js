@@ -89,19 +89,27 @@ module.exports = function (db) {
         })
     ]).then(() => {
         db.Vote.create({
-            date: '2017-10-01 10:00:00',
+            date: '2017-11-08 10:00:00',
         }).then(function (vote) {
             vote.update({
                 ChoiceId: 2,
-                userId: 1
+                UserId: 1
             });
         });
         db.Vote.create({
-            date: '2017-10-01 10:00:00',
+            date: '2017-11-11 10:00:00',
         }).then(function (vote) {
             vote.update({
                 ChoiceId: 2,
-                userId: 2
+                UserId: 2
+            });
+        });
+        db.Vote.create({
+            date: '2017-11-11 13:00:00',
+        }).then(function (vote) {
+            vote.update({
+                ChoiceId: 1,
+                UserId: 2
             });
         });
     });
