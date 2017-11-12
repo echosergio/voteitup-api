@@ -67,7 +67,8 @@ router.get('/:userId/polls', (req, res) => {
                 model: db.Choice,
                 attributes: [
                     'id',
-                    'text', [db.sequelize.fn('COUNT', db.Sequelize.col('Choices->Votes.id')), 'votes']
+                    'text', 
+                    [db.sequelize.fn('COUNT', db.Sequelize.col('Choices->Votes.id')), 'votes']
                 ],
                 include: [{
                     model: db.Vote,

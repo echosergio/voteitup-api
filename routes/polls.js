@@ -4,28 +4,67 @@ var db = require('../models');
 var router = express.Router();
 
 router.get('/', (req, res) => {
+    var query = {
+        attributes: {
+            exclude: ['createdAt', 'updatedAt'],
+            include: [
+                [db.sequelize.fn('strftime', '%d-%m-%Y', db.sequelize.col('Poll.createdAt')), 'creationDate']
+            ]
+        },
+        include: [{
+            model: db.Choice,
+            attributes: [
+                'id',
+                'text', [db.sequelize.fn('COUNT', db.Sequelize.col('Choices->Votes.id')), 'votes']
+            ],
+            include: [{
+                model: db.Vote,
+                attributes: []
+            }]
+        }, {
+            model: db.Area,
+            attributes: ['city', 'country']
+        }],
+        group: ['Choices.id']
+    }
+
+    if (req.query.keyword) {
+        query.where = {
+            text: {
+                $like: '%' + req.query.keyword + '%'
+            }
+        }
+    }
+
+    db.Poll.findAll(query)
+        .then(polls => {
+            res.send(polls);
+        })
+});
+
+router.get('/trending', (req, res) => {
     db.Poll.findAll({
-            attributes: {
-                exclude: ['createdAt', 'updatedAt'],
-                include: [
-                    [db.sequelize.fn('strftime', '%d-%m-%Y', db.sequelize.col('Poll.createdAt')), 'creationDate']
-                ]
-            },
+            attributes: [
+                'id',
+                'text', [db.sequelize.fn('COUNT', db.Sequelize.col('Choices->Votes.id')), 'votes']
+            ],
             include: [{
                 model: db.Choice,
-                attributes: [
-                    'id',
-                    'text', [db.sequelize.fn('COUNT', db.Sequelize.col('Choices->Votes.id')), 'votes']
-                ],
+                attributes: [],
                 include: [{
                     model: db.Vote,
                     attributes: []
                 }]
-            }, {
-                model: db.Area,
-                attributes: ['city', 'country']
             }],
-            group: ['Choices.id']
+            where: {
+                createdAt: {
+                    $gte: moment().subtract(7, 'days').toDate()
+                }
+            },
+            group: ['Poll.id'],
+            order: [
+                [db.sequelize.fn('COUNT', db.Sequelize.col('Choices->Votes.id')), 'DESC']
+            ]
         })
         .then(polls => {
             res.send(polls);
