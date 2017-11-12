@@ -67,8 +67,7 @@ router.get('/:userId/polls', (req, res) => {
                 model: db.Choice,
                 attributes: [
                     'id',
-                    'text', 
-                    [db.sequelize.fn('COUNT', db.Sequelize.col('Choices->Votes.id')), 'votes']
+                    'text', [db.sequelize.fn('COUNT', db.Sequelize.col('Choices->Votes.id')), 'votes']
                 ],
                 include: [{
                     model: db.Vote,
@@ -89,9 +88,13 @@ router.get('/:userId/polls', (req, res) => {
 });
 
 router.post('/:userId/polls', (req, res) => {
+    if (req.user.id != req.params.userId) {
+        res.sendStatus(400);
+    }
+
     db.Poll.create({
         text: req.body.text,
-        UserId: req.params.userId
+        UserId: req.user.id
     }).then(poll => {
         db.Area.create({
             city: req.body.area.city,
