@@ -64,7 +64,9 @@ router.get('/trending', (req, res) => {
             group: ['Poll.id'],
             order: [
                 [db.sequelize.fn('COUNT', db.Sequelize.col('Choices->Votes.id')), 'DESC']
-            ]
+            ],
+            limit: 10,
+            subQuery: false
         })
         .then(polls => {
             res.send(polls);

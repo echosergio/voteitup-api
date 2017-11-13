@@ -143,7 +143,8 @@ router.get('/:userId/activity', (req, res) => {
                     }
                 }],
                 required: true
-            }]
+            }],
+            order: [[db.sequelize.col('Choices->Votes.createdAt'), 'DESC']]
         })
         .then(polls => {
             res.send(polls);
