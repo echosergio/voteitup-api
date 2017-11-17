@@ -58,7 +58,7 @@ router.get('/trending', (req, res) => {
             }],
             where: {
                 createdAt: {
-                    $gte: moment().subtract(7, 'days').toDate()
+                    $gte: moment().subtract(14, 'days').toDate()
                 }
             },
             group: ['Poll.id'],

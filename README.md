@@ -35,7 +35,8 @@ Response
         "email": "carles@mail.com",
         "image": null,
         "bgImage": null,
-        "registerDate": "11-11-2017"
+        "registerDate": "11-11-2017",
+        "polls": 1
     },
     {
         "id": 2,
@@ -44,7 +45,8 @@ Response
         "email": "alfonso@mail.com",
         "image": null,
         "bgImage": null,
-        "registerDate": "11-11-2017"
+        "registerDate": "11-11-2017",
+        "polls": 2
     }
 ]
 ```

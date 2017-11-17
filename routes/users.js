@@ -8,9 +8,15 @@ router.get('/', (req, res) => {
             attributes: {
                 exclude: ['createdAt', 'updatedAt'],
                 include: [
-                    [db.sequelize.fn('strftime', '%d-%m-%Y', db.sequelize.col('createdAt')), 'registerDate']
+                    [db.sequelize.fn('strftime', '%d-%m-%Y', db.sequelize.col('User.createdAt')), 'registerDate'],
+                    [db.sequelize.fn('COUNT', db.Sequelize.col('Polls.id')), 'polls']
                 ]
-            }
+            },
+            include: [{
+                model: db.Poll,
+                attributes: []
+            }],
+            group: ['User.id']
         })
         .then(users => {
             res.send(users);
@@ -43,9 +49,15 @@ router.get('/:userId', (req, res) => {
             attributes: {
                 exclude: ['createdAt', 'updatedAt'],
                 include: [
-                    [db.sequelize.fn('strftime', '%d-%m-%Y', db.sequelize.col('createdAt')), 'registerDate']
+                    [db.sequelize.fn('strftime', '%d-%m-%Y', db.sequelize.col('User.createdAt')), 'registerDate'],
+                    [db.sequelize.fn('COUNT', db.Sequelize.col('Polls.id')), 'polls']
                 ]
             },
+            include: [{
+                model: db.Poll,
+                attributes: []
+            }],
+            group: ['User.id'],
             where: {
                 id: req.params.userId
             }
