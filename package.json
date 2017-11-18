@@ -10,7 +10,7 @@
     "cookie-parser": "~1.4.3",
     "crypto": "^1.0.1",
     "debug": "~2.6.9",
-    "express": "~4.15.5",
+    "express": "^4.16.2",
     "fs": "0.0.1-security",
     "jwt-simple": "^0.5.1",
     "moment": "^2.19.1",
