@@ -3,7 +3,7 @@
   <br>
 </p>
 
-<p align="center">Reference surveys platform API.</p>
+<p align="center">Reference surveys platform API</p>
 
 <p align="center"><img src="https://raw.githubusercontent.com/sergiovhe/voteitup-api/master/img/screenshot-docs.png" width=700 alt="Screenshot of Documentation"></p>
 
