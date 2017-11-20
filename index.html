@@ -223,6 +223,9 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
+            <a href="#health" class="toc-h1 toc-link" data-title="Health">Health</a>
+          </li>
+          <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
               <ul class="toc-list-h2">
                   <li>
@@ -253,6 +256,9 @@
                   </li>
                   <li>
                     <a href="#create-poll-to-a-specific-user" class="toc-h2 toc-link" data-title="Create Poll to a specific User">Create Poll to a specific User</a>
+                  </li>
+                  <li>
+                    <a href="#vote-in-a-poll" class="toc-h2 toc-link" data-title="Vote in a Poll">Vote in a Poll</a>
                   </li>
               </ul>
           </li>
@@ -288,6 +294,22 @@
 <p>Welcome to the VoteItUp API! You can use our API to access VoteItUp API endpoints, which can get information about polls and users from our platform.</p>
 
 <p>VoteItUp is intended to be the reference surveys platform.</p>
+<h1 id='health'>Health</h1>
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/status</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">voteitup.herokuapp.com</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://voteitup.herokuapp.com/api/v1/status"</span>
+</code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>VoteItUp API health endpoint.</p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>Request</p>
@@ -351,13 +373,15 @@ You must replace <code>&lt;jwt&gt;</code> with the provided JSON Web Token.
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#Referendum de independecia #Cataluña"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"UserId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"creationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11-11-2017"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"creationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20-11-2017"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"Choices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sí"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"votes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"votes"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
             </span><span class="p">}</span><span class="w">
@@ -371,13 +395,15 @@ You must replace <code>&lt;jwt&gt;</code> with the provided JSON Web Token.
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
         </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#HuelgaDocentes"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"UserId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"creationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11-11-2017"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"creationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20-11-2017"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"Choices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sí"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"votes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="s2">"votes"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"votes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
             </span><span class="p">}</span><span class="w">
@@ -423,7 +449,7 @@ You must replace <code>&lt;jwt&gt;</code> with the provided JSON Web Token.
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#Referendum de independecia #Cataluña"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"UserId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"creationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18-11-2017"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"creationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20-11-2017"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"Choices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -564,13 +590,15 @@ You must replace <code>&lt;jwt&gt;</code> with the provided JSON Web Token.
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#Referendum de independecia #Cataluña"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"UserId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"creationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11-11-2017"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"creationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20-11-2017"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"Choices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sí"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"votes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"votes"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
             </span><span class="p">}</span><span class="w">
@@ -614,13 +642,15 @@ You must replace <code>&lt;jwt&gt;</code> with the provided JSON Web Token.
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#Referendum de independecia #Cataluña"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"UserId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"creationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11-11-2017"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"creationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20-11-2017"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"Choices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
             </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sí"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"votes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
             </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"votes"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
         </span><span class="p">}</span><span class="w">
@@ -655,6 +685,7 @@ You must replace <code>&lt;jwt&gt;</code> with the provided JSON Web Token.
 <p>Request</p>
 </blockquote>
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v1/users/1/polls</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">voteitup.herokuapp.com</span>
 
@@ -667,6 +698,7 @@ You must replace <code>&lt;jwt&gt;</code> with the provided JSON Web Token.
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://voteitup.herokuapp.com/api/v1/users/1/polls"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;jwt&gt;"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
   -X POST
   -d <span class="s1">'{"text":"#HuelgaAlumnos","choices":["Sí","No"],"area":{"city":"Madrid","country":"España"}}'</span>
@@ -691,6 +723,43 @@ You must replace <code>&lt;jwt&gt;</code> with the provided JSON Web Token.
 <tr>
 <td>ID</td>
 <td>The ID of the user associated to the poll</td>
+</tr>
+</tbody></table>
+<h2 id='vote-in-a-poll'>Vote in a Poll</h2>
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v1/polls/2/choices/3/vote</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">voteitup.herokuapp.com</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://voteitup.herokuapp.com/api/v1/polls/2/choices/3/vote"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;jwt&gt;"</span>
+  -X POST
+</code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Vote in a poll.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>POST https://voteitup.herokuapp.com/api/v1/polls/&lt;PollID&gt;/choices/&lt;ChoiceID&gt;/vote</code></p>
+<h3 id='url-parameters-6'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PollID</td>
+<td>The ID of the poll</td>
+</tr>
+<tr>
+<td>ChoiceID</td>
+<td>The ID of the choice</td>
 </tr>
 </tbody></table>
 <h1 id='users'>Users</h1><h2 id='get-all-users'>Get all Users</h2>
@@ -730,7 +799,7 @@ You must replace <code>&lt;jwt&gt;</code> with the provided JSON Web Token.
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>Get all users.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET https://voteitup.herokuapp.com/api/v1/users</code></p>
 <h2 id='get-user'>Get User</h2>
 <blockquote>
@@ -757,9 +826,9 @@ You must replace <code>&lt;jwt&gt;</code> with the provided JSON Web Token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Get a specific user.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET https://voteitup.herokuapp.com/api/v1/users/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-6'>URL Parameters</h3>
+<h3 id='url-parameters-7'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -776,6 +845,7 @@ You must replace <code>&lt;jwt&gt;</code> with the provided JSON Web Token.
 <p>Request</p>
 </blockquote>
 <pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v1/users</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">voteitup.herokuapp.com</span>
 
@@ -786,6 +856,7 @@ You must replace <code>&lt;jwt&gt;</code> with the provided JSON Web Token.
     </span><span class="s2">"bio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aficionado a la política"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://voteitup.herokuapp.com/api/v1/users"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;jwt&gt;"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
   -X POST
   -d <span class="s1">'{"email":"carles@mail.com","username":"Carles","password":"1234","bio":"Aficionado a la política"}'</span>
@@ -798,7 +869,7 @@ You must replace <code>&lt;jwt&gt;</code> with the provided JSON Web Token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Create new user.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>POST https://voteitup.herokuapp.com/api/v1/users</code></p>
 <h3 id='body-parameters'>Body Parameters</h3>
 <table><thead>
@@ -866,9 +937,9 @@ You must replace <code>&lt;jwt&gt;</code> with the provided JSON Web Token.
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>Get user activity sorted by date.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>GET https://voteitup.herokuapp.com/api/v1/users/&lt;ID&gt;/activity</code></p>
-<h3 id='url-parameters-7'>URL Parameters</h3>
+<h3 id='url-parameters-8'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
