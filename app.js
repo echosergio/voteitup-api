@@ -40,10 +40,12 @@ app.use(function (err, req, res, next) {
   res.sendStatus(err.status || 500);
 });
 
-db.sequelize.sync({
-  force: true
-}).then(() => {
-  require('./db/seed.js')(db);
-});
+if (process.env.NODE_ENV == 'development') {
+  db.sequelize.sync({
+    force: true
+  }).then(() => {
+    require('./db/seed.js')(db);
+  });
+}
 
 module.exports = app;
