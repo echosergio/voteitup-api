@@ -258,6 +258,9 @@
                     <a href="#create-poll-to-a-specific-user" class="toc-h2 toc-link" data-title="Create Poll to a specific User">Create Poll to a specific User</a>
                   </li>
                   <li>
+                    <a href="#delete-poll-from-a-specific-user" class="toc-h2 toc-link" data-title="Delete Poll from a specific User">Delete Poll from a specific User</a>
+                  </li>
+                  <li>
                     <a href="#vote-in-a-poll" class="toc-h2 toc-link" data-title="Vote in a Poll">Vote in a Poll</a>
                   </li>
               </ul>
@@ -725,6 +728,45 @@ You must replace <code>&lt;jwt&gt;</code> with the provided JSON Web Token.
 <td>The ID of the user associated to the poll</td>
 </tr>
 </tbody></table>
+<h2 id='delete-poll-from-a-specific-user'>Delete Poll from a specific User</h2>
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/api/v1/users/1/polls/1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer &lt;jwt&gt;</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">voteitup.herokuapp.com</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://voteitup.herokuapp.com/api/v1/users/1/polls/1"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;jwt&gt;"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -X DELETE
+</code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Delete poll from a specific user. A user can only delete polls created by himself.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET https://voteitup.herokuapp.com/api/v1/users/&lt;UserID&gt;/polls/&lt;PollID&gt;</code></p>
+<h3 id='url-parameters-6'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>UserID</td>
+<td>The ID of the user</td>
+</tr>
+<tr>
+<td>PollID</td>
+<td>The ID of the poll</td>
+</tr>
+</tbody></table>
 <h2 id='vote-in-a-poll'>Vote in a Poll</h2>
 <blockquote>
 <p>Request</p>
@@ -744,9 +786,9 @@ You must replace <code>&lt;jwt&gt;</code> with the provided JSON Web Token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Vote in a poll.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>POST https://voteitup.herokuapp.com/api/v1/polls/&lt;PollID&gt;/choices/&lt;ChoiceID&gt;/vote</code></p>
-<h3 id='url-parameters-6'>URL Parameters</h3>
+<h3 id='url-parameters-7'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -799,7 +841,7 @@ You must replace <code>&lt;jwt&gt;</code> with the provided JSON Web Token.
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>Get all users.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET https://voteitup.herokuapp.com/api/v1/users</code></p>
 <h2 id='get-user'>Get User</h2>
 <blockquote>
@@ -826,9 +868,9 @@ You must replace <code>&lt;jwt&gt;</code> with the provided JSON Web Token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Get a specific user.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>GET https://voteitup.herokuapp.com/api/v1/users/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-7'>URL Parameters</h3>
+<h3 id='url-parameters-8'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -869,7 +911,7 @@ You must replace <code>&lt;jwt&gt;</code> with the provided JSON Web Token.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Create new user.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>POST https://voteitup.herokuapp.com/api/v1/users</code></p>
 <h3 id='body-parameters'>Body Parameters</h3>
 <table><thead>
@@ -937,9 +979,9 @@ You must replace <code>&lt;jwt&gt;</code> with the provided JSON Web Token.
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>Get user activity sorted by date.</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>GET https://voteitup.herokuapp.com/api/v1/users/&lt;ID&gt;/activity</code></p>
-<h3 id='url-parameters-8'>URL Parameters</h3>
+<h3 id='url-parameters-9'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
