@@ -132,7 +132,7 @@ router.get('/:pollId/activity', (req, res) => {
         })
 });
 
-router.post('/:pollId/choices/:choiceId/vote', (req, res) => {
+router.post('/:pollId/choices/:choiceId/vote', (req, res, next) => {
     db.Poll.findOne({
             include: [{
                 model: db.Choice,

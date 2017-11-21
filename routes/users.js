@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
         })
 });
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
     db.User.create({
         username: req.body.username,
         bio: req.body.bio,
@@ -99,7 +99,7 @@ router.get('/:userId/polls', (req, res) => {
         })
 });
 
-router.post('/:userId/polls', (req, res) => {
+router.post('/:userId/polls', (req, res, next) => {
     if (req.user.id != req.params.userId) {
         res.sendStatus(400);
     }
@@ -130,15 +130,55 @@ router.post('/:userId/polls', (req, res) => {
 
 router.get('/:userId/polls/:pollId', (req, res) => {
     db.Poll.findOne({
-            pollsQuery,
-            where: {
-                UserId: req.params.userId,
-                id: req.params.pollId
-            }
-        })
-        .then(poll => {
-            res.send(poll);
-        })
+        attributes: {
+            exclude: ['createdAt', 'updatedAt'],
+            include: [
+                [db.sequelize.fn('strftime', '%d-%m-%Y', db.sequelize.col('Poll.createdAt')), 'creationDate']
+            ]
+        },
+        include: [{
+            model: db.Choice,
+            attributes: [
+                'id',
+                'text', [db.sequelize.fn('COUNT', db.Sequelize.col('Choices->Votes.id')), 'votes']
+            ],
+            include: [{
+                model: db.Vote,
+                attributes: []
+            }]
+        }, {
+            model: db.Area,
+            attributes: ['city', 'country']
+        }],
+        group: ['Choices.id'],
+        where: {
+            UserId: req.params.userId,
+            id: req.params.pollId
+        }
+    }).then(poll => {
+        res.send(poll);
+    })
+});
+
+router.delete('/:userId/polls/:pollId', (req, res) => {
+    if (req.user.id != req.params.userId) {
+        res.sendStatus(400);
+    }
+
+    db.Poll.findOne({
+        where: {
+            UserId: req.params.userId,
+            id: req.user.id
+        }
+    }).then(poll => {
+        return poll.destroy();
+    }).then(() => {
+        res.json({
+            status: "success"
+        });
+    }).catch(() =>
+        res.sendStatus(400)
+    )
 });
 
 router.get('/:userId/activity', (req, res) => {
@@ -156,7 +196,9 @@ router.get('/:userId/activity', (req, res) => {
                 }],
                 required: true
             }],
-            order: [[db.sequelize.col('Choices->Votes.createdAt'), 'DESC']]
+            order: [
+                [db.sequelize.col('Choices->Votes.createdAt'), 'DESC']
+            ]
         })
         .then(polls => {
             res.send(polls);
