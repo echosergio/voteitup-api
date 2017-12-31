@@ -34,7 +34,7 @@ router.post('/', (req, res, next) => {
     }).then(function (user) {
         db.Auth.create({
             token: crypto.createHash('md5').update(req.body.password).digest("hex"),
-            userId: user.id
+            UserId: user.id
         });
     }).then(() => {
         res.json({
