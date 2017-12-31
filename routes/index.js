@@ -1,5 +1,4 @@
 var express = require('express');
-var auth = require("../passport-auth.js")();
 var router = express.Router();
 
 var authRoutes = require('./auth');
@@ -13,7 +12,7 @@ router.get('/status', (req, res) =>
 );
 
 router.use('/auth', authRoutes);
-router.use('/polls', auth.authenticate(), pollsRoutes);
-router.use('/users', auth.authenticate(), usersRoutes);
+router.use('/polls', pollsRoutes);
+router.use('/users', usersRoutes);
 
 module.exports = router;

@@ -1,9 +1,10 @@
 var express = require('express');
 var crypto = require('crypto');
+var auth = require('../passport-auth.js')();
 var db = require('../models');
 var router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', auth.authenticate(), (req, res) => {
     db.User.findAll({
             attributes: {
                 exclude: ['createdAt', 'updatedAt'],
@@ -44,7 +45,7 @@ router.post('/', (req, res, next) => {
     )
 });
 
-router.get('/:userId', (req, res) => {
+router.get('/:userId', auth.authenticate(), (req, res) => {
     db.User.findOne({
             attributes: {
                 exclude: ['createdAt', 'updatedAt'],
@@ -67,7 +68,7 @@ router.get('/:userId', (req, res) => {
         })
 });
 
-router.get('/:userId/polls', (req, res) => {
+router.get('/:userId/polls', auth.authenticate(), (req, res) => {
     db.Poll.findAll({
             attributes: {
                 exclude: ['createdAt', 'updatedAt'],
@@ -99,7 +100,7 @@ router.get('/:userId/polls', (req, res) => {
         })
 });
 
-router.post('/:userId/polls', (req, res, next) => {
+router.post('/:userId/polls', auth.authenticate(), (req, res, next) => {
     if (req.user.id != req.params.userId) {
         res.sendStatus(400);
     }
@@ -128,7 +129,7 @@ router.post('/:userId/polls', (req, res, next) => {
     )
 });
 
-router.get('/:userId/polls/:pollId', (req, res) => {
+router.get('/:userId/polls/:pollId', auth.authenticate(), (req, res) => {
     db.Poll.findOne({
         attributes: {
             exclude: ['createdAt', 'updatedAt'],
@@ -160,7 +161,7 @@ router.get('/:userId/polls/:pollId', (req, res) => {
     })
 });
 
-router.delete('/:userId/polls/:pollId', (req, res) => {
+router.delete('/:userId/polls/:pollId', auth.authenticate(), (req, res) => {
     if (req.user.id != req.params.userId) {
         res.sendStatus(400);
     }
@@ -181,7 +182,7 @@ router.delete('/:userId/polls/:pollId', (req, res) => {
     )
 });
 
-router.get('/:userId/activity', (req, res) => {
+router.get('/:userId/activity', auth.authenticate(), (req, res) => {
     db.Poll.findAll({
             attributes: ['id', 'text', [db.sequelize.col('Choices.text'), 'choice']],
             include: [{

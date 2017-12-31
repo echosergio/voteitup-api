@@ -1,9 +1,10 @@
 var express = require('express');
 var moment = require('moment');
+var auth = require('../passport-auth.js')();
 var db = require('../models');
 var router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', auth.authenticate(), (req, res) => {
     var query = {
         attributes: {
             exclude: ['createdAt', 'updatedAt'],
@@ -42,7 +43,7 @@ router.get('/', (req, res) => {
         })
 });
 
-router.get('/trending', (req, res) => {
+router.get('/trending', auth.authenticate(), (req, res) => {
     db.Poll.findAll({
             attributes: [
                 'id',
@@ -73,7 +74,7 @@ router.get('/trending', (req, res) => {
         })
 });
 
-router.get('/:pollId', (req, res) => {
+router.get('/:pollId', auth.authenticate(), (req, res) => {
     db.Poll.findOne({
             attributes: {
                 exclude: ['createdAt', 'updatedAt'],
@@ -105,7 +106,7 @@ router.get('/:pollId', (req, res) => {
         })
 });
 
-router.get('/:pollId/activity', (req, res) => {
+router.get('/:pollId/activity', auth.authenticate(), (req, res) => {
     var daysback = req.query.daysback || 7
 
     db.Choice.findAll({
@@ -132,7 +133,7 @@ router.get('/:pollId/activity', (req, res) => {
         })
 });
 
-router.post('/:pollId/choices/:choiceId/vote', (req, res, next) => {
+router.post('/:pollId/choices/:choiceId/vote', auth.authenticate(), (req, res, next) => {
     db.Poll.findOne({
             include: [{
                 model: db.Choice,
