@@ -268,68 +268,65 @@ module.exports = function (db) {
         })
     ]).then(() => {
         // #Referendum de independecia #Cataluña
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 1, UserId: 1 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 1, UserId: 2 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 2, UserId: 3 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 2, UserId: 4 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 2, UserId: 5 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 2, UserId: 6 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 2, UserId: 7 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 1, UserId: 8 }); });
+        db.Vote.create({createdAt: '2018-01-09'}).then(function (vote) { vote.update({ ChoiceId: 1, UserId: 1 }); });
+        db.Vote.create({createdAt: '2018-01-11'}).then(function (vote) { vote.update({ ChoiceId: 1, UserId: 2 }); });
+        db.Vote.create({createdAt: '2018-01-08'}).then(function (vote) { vote.update({ ChoiceId: 2, UserId: 3 }); });
+        db.Vote.create({createdAt: '2018-01-10'}).then(function (vote) { vote.update({ ChoiceId: 2, UserId: 4 }); });
+        db.Vote.create({createdAt: '2018-01-09'}).then(function (vote) { vote.update({ ChoiceId: 2, UserId: 5 }); });
+        db.Vote.create({createdAt: '2018-01-08'}).then(function (vote) { vote.update({ ChoiceId: 2, UserId: 6 }); });
+        db.Vote.create({createdAt: '2018-01-12'}).then(function (vote) { vote.update({ ChoiceId: 2, UserId: 7 }); });
+        db.Vote.create({createdAt: '2018-01-10'}).then(function (vote) { vote.update({ ChoiceId: 1, UserId: 8 }); });
 
         // #HuelgaDocentes
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 3, UserId: 2 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 3, UserId: 4 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 4, UserId: 6 }); });
+        db.Vote.create({createdAt: '2018-01-09'}).then(function (vote) { vote.update({ ChoiceId: 3, UserId: 2 }); });
+        db.Vote.create({createdAt: '2018-01-11'}).then(function (vote) { vote.update({ ChoiceId: 3, UserId: 4 }); });
+        db.Vote.create({createdAt: '2018-01-11'}).then(function (vote) { vote.update({ ChoiceId: 4, UserId: 6 }); });
 
         // #Elecciones 21 Diciembre
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 5, UserId: 1 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 7, UserId: 2 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 6, UserId: 3 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 5, UserId: 4 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 8, UserId: 5 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 8, UserId: 6 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 6, UserId: 7 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 7, UserId: 8 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 5, UserId: 9 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 8, UserId: 10 }); });
+        db.Vote.create({createdAt: '2018-01-09'}).then(function (vote) { vote.update({ ChoiceId: 5, UserId: 1 }); });
+        db.Vote.create({createdAt: '2018-01-11'}).then(function (vote) { vote.update({ ChoiceId: 7, UserId: 2 }); });
+        db.Vote.create({createdAt: '2018-01-12'}).then(function (vote) { vote.update({ ChoiceId: 6, UserId: 3 }); });
+        db.Vote.create({createdAt: '2018-01-09'}).then(function (vote) { vote.update({ ChoiceId: 5, UserId: 4 }); });
+        db.Vote.create({createdAt: '2018-01-08'}).then(function (vote) { vote.update({ ChoiceId: 8, UserId: 5 }); });
+        db.Vote.create({createdAt: '2018-01-10'}).then(function (vote) { vote.update({ ChoiceId: 8, UserId: 6 }); });
+        db.Vote.create({createdAt: '2018-01-12'}).then(function (vote) { vote.update({ ChoiceId: 6, UserId: 7 }); });
+        db.Vote.create({createdAt: '2018-01-11'}).then(function (vote) { vote.update({ ChoiceId: 7, UserId: 8 }); });
+        db.Vote.create({createdAt: '2018-01-11'}).then(function (vote) { vote.update({ ChoiceId: 5, UserId: 9 }); });
 
         // Ciudades tendencia #Turismo
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 9, UserId: 4 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 12, UserId: 6 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 11, UserId: 8 }); });
+        db.Vote.create({createdAt: '2018-01-08'}).then(function (vote) { vote.update({ ChoiceId: 9, UserId: 4 }); });
+        db.Vote.create({createdAt: '2018-01-09'}).then(function (vote) { vote.update({ ChoiceId: 12, UserId: 6 }); });
+        db.Vote.create({createdAt: '2018-01-11'}).then(function (vote) { vote.update({ ChoiceId: 11, UserId: 8 }); });
 
         // Cambio de hora presentaciones #DAM #MUII
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 13, UserId: 1 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 14, UserId: 2 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 15, UserId: 3 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 15, UserId: 4 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 15, UserId: 5 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 13, UserId: 6 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 15, UserId: 7 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 15, UserId: 8 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 14, UserId: 9 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 15, UserId: 10 }); });
+        db.Vote.create({createdAt: '2018-01-09'}).then(function (vote) { vote.update({ ChoiceId: 13, UserId: 1 }); });
+        db.Vote.create({createdAt: '2018-01-11'}).then(function (vote) { vote.update({ ChoiceId: 14, UserId: 2 }); });
+        db.Vote.create({createdAt: '2018-01-12'}).then(function (vote) { vote.update({ ChoiceId: 15, UserId: 3 }); });
+        db.Vote.create({createdAt: '2018-01-10'}).then(function (vote) { vote.update({ ChoiceId: 15, UserId: 4 }); });
+        db.Vote.create({createdAt: '2018-01-11'}).then(function (vote) { vote.update({ ChoiceId: 15, UserId: 5 }); });
+        db.Vote.create({createdAt: '2018-01-12'}).then(function (vote) { vote.update({ ChoiceId: 13, UserId: 6 }); });
+        db.Vote.create({createdAt: '2018-01-08'}).then(function (vote) { vote.update({ ChoiceId: 15, UserId: 7 }); });
+        db.Vote.create({createdAt: '2018-01-09'}).then(function (vote) { vote.update({ ChoiceId: 15, UserId: 8 }); });
+        db.Vote.create({createdAt: '2018-01-11'}).then(function (vote) { vote.update({ ChoiceId: 14, UserId: 9 }); });
 
         // Modelo #Orlas master 2016/18 #MUII
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 16, UserId: 1 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 16, UserId: 2 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 17, UserId: 3 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 16, UserId: 4 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 18, UserId: 5 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 19, UserId: 6 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 16, UserId: 7 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 19, UserId: 8 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 19, UserId: 9 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 16, UserId: 10 }); });
+        db.Vote.create({createdAt: '2018-01-09'}).then(function (vote) { vote.update({ ChoiceId: 16, UserId: 1 }); });
+        db.Vote.create({createdAt: '2018-01-12'}).then(function (vote) { vote.update({ ChoiceId: 16, UserId: 2 }); });
+        db.Vote.create({createdAt: '2018-01-11'}).then(function (vote) { vote.update({ ChoiceId: 17, UserId: 3 }); });
+        db.Vote.create({createdAt: '2018-01-11'}).then(function (vote) { vote.update({ ChoiceId: 16, UserId: 4 }); });
+        db.Vote.create({createdAt: '2018-01-08'}).then(function (vote) { vote.update({ ChoiceId: 18, UserId: 5 }); });
+        db.Vote.create({createdAt: '2018-01-09'}).then(function (vote) { vote.update({ ChoiceId: 19, UserId: 6 }); });
+        db.Vote.create({createdAt: '2018-01-12'}).then(function (vote) { vote.update({ ChoiceId: 16, UserId: 7 }); });
+        db.Vote.create({createdAt: '2018-01-11'}).then(function (vote) { vote.update({ ChoiceId: 19, UserId: 8 }); });
+        db.Vote.create({createdAt: '2018-01-12'}).then(function (vote) { vote.update({ ChoiceId: 19, UserId: 9 }); });
 
         // Mejor #baterista de todos los tiempos
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 20, UserId: 1 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 22, UserId: 2 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 23, UserId: 3 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 22, UserId: 4 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 21, UserId: 5 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 23, UserId: 6 }); });
-        db.Vote.create({}).then(function (vote) { vote.update({ ChoiceId: 22, UserId: 7 }); });
+        db.Vote.create({createdAt: '2018-01-09'}).then(function (vote) { vote.update({ ChoiceId: 20, UserId: 1 }); });
+        db.Vote.create({createdAt: '2018-01-12'}).then(function (vote) { vote.update({ ChoiceId: 22, UserId: 2 }); });
+        db.Vote.create({createdAt: '2018-01-10'}).then(function (vote) { vote.update({ ChoiceId: 23, UserId: 3 }); });
+        db.Vote.create({createdAt: '2018-01-08'}).then(function (vote) { vote.update({ ChoiceId: 22, UserId: 4 }); });
+        db.Vote.create({createdAt: '2018-01-10'}).then(function (vote) { vote.update({ ChoiceId: 21, UserId: 5 }); });
+        db.Vote.create({createdAt: '2018-01-11'}).then(function (vote) { vote.update({ ChoiceId: 23, UserId: 6 }); });
+        db.Vote.create({createdAt: '2018-01-11'}).then(function (vote) { vote.update({ ChoiceId: 22, UserId: 7 }); });
     });
 };
